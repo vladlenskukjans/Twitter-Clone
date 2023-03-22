@@ -12,15 +12,11 @@ class HomeViewController: UIViewController {
     
     private let timelineTableView: UITableView = {
         let table = UITableView()
-        table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        table.register(TweetTableViewCell.self, forCellReuseIdentifier: TweetTableViewCell.identifier)
         return table
     }()
     
-    
-    
-    
-    
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
      
@@ -44,12 +40,9 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = "Hello"
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TweetTableViewCell.identifier, for: indexPath) as? TweetTableViewCell else {return UITableViewCell()}
         return cell
     }
-    
-    
     
     
     

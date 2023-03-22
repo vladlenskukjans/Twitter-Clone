@@ -26,7 +26,7 @@ class MainTabBarViewController: UITabBarController {
         vc2.tabBarItem.image = UIImage(systemName: "magnifyingglass")
         
         vc3.tabBarItem.image = UIImage(systemName: "bell")
-        vc1.tabBarItem.selectedImage = UIImage(systemName: "bell.fill")
+        vc3.tabBarItem.selectedImage = UIImage(systemName: "bell.fill")
         
         vc4.tabBarItem.image = UIImage(systemName: "envelope")
         vc4.tabBarItem.selectedImage = UIImage(systemName: "envelope.fill")
