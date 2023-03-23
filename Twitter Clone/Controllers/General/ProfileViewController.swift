@@ -36,7 +36,7 @@ class ProfileViewController: UIViewController {
       
         view.backgroundColor = .systemBackground
         navigationItem.title = "Profile"
-        let headerView = ProfileTableViewHeader(frame: CGRect(x: 0, y: 0, width: profileTableView.frame.width, height: 380))
+        let headerView = ProfileTableViewHeader(frame: CGRect(x: 0, y: 0, width: profileTableView.frame.width, height: 390))
         
         profileTableView.delegate = self
         profileTableView.dataSource = self
