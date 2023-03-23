@@ -9,6 +9,47 @@ import UIKit
 
 class ProfileTableViewHeader: UIView {
     
+    
+    private let followersTextLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .secondaryLabel
+        label.font = .systemFont(ofSize: 14, weight: .regular)
+        label.text = "Followers"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    
+    private let followersCountLabel: UILabel = {
+       let label = UILabel()
+        label.textColor = .label
+        label.text = "1M"
+        label.font = .systemFont(ofSize: 14, weight: .bold)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    
+    private let followingTextLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .secondaryLabel
+        label.font = .systemFont(ofSize: 14, weight: .regular)
+        label.text = "Following"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    
+    private let followingCountLabel: UILabel = {
+       let label = UILabel()
+        label.textColor = .label
+        label.text = "345"
+        label.font = .systemFont(ofSize: 14, weight: .bold)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    
     private let joinedDateLabel: UILabel = {
         let label = UILabel()
         label.textColor = .secondaryLabel
@@ -86,6 +127,11 @@ class ProfileTableViewHeader: UIView {
         addSubview(userBioLabel)
         addSubview(joinDateImageView)
         addSubview(joinedDateLabel)
+        addSubview(followingCountLabel)
+        addSubview(followingTextLabel)
+        addSubview(followersCountLabel)
+        addSubview(followersTextLabel)
+        
         addConstraints()
     }
     
@@ -102,7 +148,7 @@ extension ProfileTableViewHeader {
             profileHeaderImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             profileHeaderImageView.topAnchor.constraint(equalTo: topAnchor),
             profileHeaderImageView.trailingAnchor.constraint(equalTo:trailingAnchor),
-            profileHeaderImageView.heightAnchor.constraint(equalToConstant: 180),
+            profileHeaderImageView.heightAnchor.constraint(equalToConstant: 150),
             
             profileAvatarImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             profileAvatarImageView.centerYAnchor.constraint(equalTo: profileHeaderImageView.bottomAnchor,constant: 10),
@@ -123,7 +169,22 @@ extension ProfileTableViewHeader {
             joinDateImageView.topAnchor.constraint(equalTo: userBioLabel.bottomAnchor, constant: 8),
             
             joinedDateLabel.leadingAnchor.constraint(equalTo: joinDateImageView.trailingAnchor, constant: 2),
-            joinedDateLabel.centerYAnchor.constraint(equalTo: joinDateImageView.centerYAnchor)
+            joinedDateLabel.centerYAnchor.constraint(equalTo: joinDateImageView.centerYAnchor),
+            
+            followingCountLabel.leadingAnchor.constraint(equalTo: displayNameLabel.leadingAnchor),
+            followingCountLabel.topAnchor.constraint(equalTo: joinedDateLabel.bottomAnchor, constant: 10),
+            
+            followingTextLabel.leadingAnchor.constraint(equalTo: followingCountLabel.trailingAnchor, constant: 4),
+            followingTextLabel.bottomAnchor.constraint(equalTo: followingCountLabel.bottomAnchor),
+            
+            followersCountLabel.leadingAnchor.constraint(equalTo: followingTextLabel.trailingAnchor,constant: 8),
+            followersCountLabel.bottomAnchor.constraint(equalTo: followingCountLabel.bottomAnchor),
+            
+            followersTextLabel.leadingAnchor.constraint(equalTo: followersCountLabel.trailingAnchor,constant: 4),
+            followersTextLabel.bottomAnchor.constraint(equalTo: followingCountLabel.bottomAnchor),
+            
+            
+            
 
         ])
     }
