@@ -31,6 +31,8 @@
 		248B312D29CCAFB300EBAD36 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248B312C29CCAFB300EBAD36 /* OnboardingViewController.swift */; };
 		248B313029CCB6A200EBAD36 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 248B312F29CCB6A200EBAD36 /* GoogleService-Info.plist */; };
 		248B313229CCC1C700EBAD36 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248B313129CCC1C700EBAD36 /* RegisterViewController.swift */; };
+		248B313529CCD66900EBAD36 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248B313429CCD66900EBAD36 /* RegisterViewModel.swift */; };
+		248B313829CF1E3400EBAD36 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248B313729CF1E3400EBAD36 /* AuthManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +53,8 @@
 		248B312C29CCAFB300EBAD36 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		248B312F29CCB6A200EBAD36 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		248B313129CCC1C700EBAD36 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		248B313429CCD66900EBAD36 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		248B313729CF1E3400EBAD36 /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,9 +80,11 @@
 		248B30E429CB62B400EBAD36 = {
 			isa = PBXGroup;
 			children = (
+				248B313629CF1E1D00EBAD36 /* Networking */,
 				248B312E29CCB47F00EBAD36 /* Resources */,
 				248B30EF29CB62B400EBAD36 /* Twitter Clone */,
 				248B30EE29CB62B400EBAD36 /* Products */,
+				248B313929CF9D8D00EBAD36 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -93,6 +99,7 @@
 		248B30EF29CB62B400EBAD36 /* Twitter Clone */ = {
 			isa = PBXGroup;
 			children = (
+				248B313329CCD63A00EBAD36 /* ViewModel */,
 				248B310E29CB72EA00EBAD36 /* View */,
 				248B310429CB649E00EBAD36 /* Controllers */,
 				248B30F029CB62B400EBAD36 /* AppDelegate.swift */,
@@ -158,6 +165,29 @@
 				248B312F29CCB6A200EBAD36 /* GoogleService-Info.plist */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		248B313329CCD63A00EBAD36 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				248B313429CCD66900EBAD36 /* RegisterViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		248B313629CF1E1D00EBAD36 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				248B313729CF1E3400EBAD36 /* AuthManager.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		248B313929CF9D8D00EBAD36 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -246,6 +276,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				248B310929CB64D100EBAD36 /* SearchViewController.swift in Sources */,
+				248B313829CF1E3400EBAD36 /* AuthManager.swift in Sources */,
 				248B30F529CB62B400EBAD36 /* MainTabBarViewController.swift in Sources */,
 				248B310B29CB64E600EBAD36 /* NotificationViewController.swift in Sources */,
 				248B313229CCC1C700EBAD36 /* RegisterViewController.swift in Sources */,
@@ -255,6 +286,7 @@
 				248B311329CB983B00EBAD36 /* ProfileViewController.swift in Sources */,
 				248B310D29CB650000EBAD36 /* DirectMessagesViewController.swift in Sources */,
 				248B311529CC3A4700EBAD36 /* ProfileTableViewHeader.swift in Sources */,
+				248B313529CCD66900EBAD36 /* RegisterViewModel.swift in Sources */,
 				248B312D29CCAFB300EBAD36 /* OnboardingViewController.swift in Sources */,
 				248B311029CB731C00EBAD36 /* TweetTableViewCell.swift in Sources */,
 			);
