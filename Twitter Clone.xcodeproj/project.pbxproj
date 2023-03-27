@@ -38,6 +38,7 @@
 		248B314029D0781A00EBAD36 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248B313F29D0781A00EBAD36 /* DatabaseManager.swift */; };
 		248B314229D0B67B00EBAD36 /* HomeViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248B314129D0B67B00EBAD36 /* HomeViewViewModel.swift */; };
 		248B314429D0C8C300EBAD36 /* ProfileDataFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248B314329D0C8C300EBAD36 /* ProfileDataFormViewController.swift */; };
+		248B314629D180D800EBAD36 /* ProfileDataFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248B314529D180D800EBAD36 /* ProfileDataFormViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +66,7 @@
 		248B313F29D0781A00EBAD36 /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		248B314129D0B67B00EBAD36 /* HomeViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewViewModel.swift; sourceTree = "<group>"; };
 		248B314329D0C8C300EBAD36 /* ProfileDataFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataFormViewController.swift; sourceTree = "<group>"; };
+		248B314529D180D800EBAD36 /* ProfileDataFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataFormViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,6 +187,7 @@
 			children = (
 				248B313429CCD66900EBAD36 /* AuthenticationViewModel.swift */,
 				248B314129D0B67B00EBAD36 /* HomeViewViewModel.swift */,
+				248B314529D180D800EBAD36 /* ProfileDataFormViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 				248B310B29CB64E600EBAD36 /* NotificationViewController.swift in Sources */,
 				248B313229CCC1C700EBAD36 /* RegisterViewController.swift in Sources */,
 				248B30F129CB62B400EBAD36 /* AppDelegate.swift in Sources */,
+				248B314629D180D800EBAD36 /* ProfileDataFormViewModel.swift in Sources */,
 				248B30F329CB62B400EBAD36 /* SceneDelegate.swift in Sources */,
 				248B310729CB64BF00EBAD36 /* HomeViewController.swift in Sources */,
 				248B311329CB983B00EBAD36 /* ProfileViewController.swift in Sources */,
