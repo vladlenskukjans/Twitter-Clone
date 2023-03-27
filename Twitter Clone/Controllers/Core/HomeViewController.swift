@@ -7,14 +7,18 @@
 
 import UIKit
 import FirebaseAuth
+import Combine
 
 class HomeViewController: UIViewController {
 
+    private var viewModel = HomViewViewModel()
+    private var subscriptions: Set<AnyCancellable> = []
+    
     private func configureNavigationBar() {
         let size: CGFloat = 50
         let logoImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: size, height: size))
         logoImageView.contentMode = .scaleAspectFill
-        logoImageView.image = UIImage(named: "logo")
+        logoImageView.image = UIImage(named: "twitter")
         
         let middleView = UIView(frame: CGRect(x: 0, y: 0, width: size, height: size))
         middleView.addSubview(logoImageView)
@@ -45,22 +49,52 @@ class HomeViewController: UIViewController {
         timelineTableView.delegate = self
         timelineTableView.dataSource = self
         configureNavigationBar()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "rectangle.portrait.and.arrow.right"), style: .plain, target: self, action: #selector(didTapSingOut))
+        bindViews()
     }
     
+    func completeUserOnboarding() {
+        let vc = ProfileDataFormViewController()
+        present(vc, animated: true)
+    }
+    
+    func bindViews() {
+        viewModel.$user.sink { [weak self] user in
+            guard let user = user else {return}
+            if !user.isUserOnboarded {
+                self?.completeUserOnboarding()
+                print("complition onbord")
+            }
+        }
+        .store(in: &subscriptions)
+    }
+    
+    
+    @objc private func didTapSingOut() {
+      try? Auth.auth().signOut()
+        heandleAuthentication()
+    }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         timelineTableView.frame = view.bounds
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.navigationBar.isHidden = false
+    private func heandleAuthentication() {
         if Auth.auth().currentUser == nil {
             let vc = UINavigationController(rootViewController: OnboardingViewController())
             vc.modalPresentationStyle = .fullScreen
             present(vc, animated: true)
         }
+        
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = false
+       heandleAuthentication()
+        viewModel.retreiveUser()
     }
     
     }
