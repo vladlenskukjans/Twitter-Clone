@@ -6,8 +6,10 @@
 //
 
 import UIKit
+import PhotosUI
 
 class ProfileDataFormViewController: UIViewController {
+    
     
     
     let scrollView: UIScrollView = {
@@ -35,7 +37,7 @@ class ProfileDataFormViewController: UIViewController {
         textField.keyboardType = .default
         textField.leftView = UIVisualEffectView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
         textField.layer.cornerRadius = 8
-        textField.attributedText = NSAttributedString(string: "Display Name", attributes: [NSAttributedString.Key.foregroundColor : UIColor.gray])
+        textField.attributedPlaceholder = NSAttributedString(string: "Display Name", attributes: [NSAttributedString.Key.foregroundColor : UIColor.gray])
         return textField
     }()
     
@@ -60,10 +62,39 @@ class ProfileDataFormViewController: UIViewController {
         imageView.image = UIImage(systemName: "camera.fill")
         imageView.tintColor = .gray
         imageView.isUserInteractionEnabled = true
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
+    
+    private let bioTextView: UITextView = {
+        let textView = UITextView()
+        textView.backgroundColor = .secondarySystemFill
+        textView.layer.masksToBounds = true
+        textView.layer.cornerRadius = 8
+        textView.textContainerInset = .init(top: 15, left: 15, bottom: 15, right: 15)
+        textView.text = "Tell the world about your selft"
+        textView.font = .systemFont(ofSize: 16)
+        textView.textColor = .gray
+        textView.translatesAutoresizingMaskIntoConstraints = false
+       return textView
+    }()
+    
+   
+    private let submitButton : UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Submit", for: .normal)
+        button.tintColor = .white
+        button.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
+        button.backgroundColor =  UIColor(red: 29/255, green: 161/255, blue: 242/255, alpha: 1)
+        button.layer.masksToBounds = true
+        button.layer.cornerRadius = 25
+        button.isEnabled = false
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    
     
 
     override func viewDidLoad() {
@@ -75,11 +106,30 @@ class ProfileDataFormViewController: UIViewController {
         scrollView.addSubview(avatarPlaceHolderImageView)
         scrollView.addSubview(displayNametextField)
         scrollView.addSubview(userNametextField)
-        
+        scrollView.addSubview(bioTextView)
+        scrollView.addSubview(submitButton)
         addConstraints()
         isModalInPresentation = true
+        bioTextView.delegate = self
+        displayNametextField.delegate = self
+        userNametextField.delegate = self
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapView)))
+        avatarPlaceHolderImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapToUpload)))
+    }
+    
+    @objc private func didTapToUpload() {
+        var configuration = PHPickerConfiguration()
+        configuration.selectionLimit = 1
+        configuration.filter = .images
         
+        let picker = PHPickerViewController(configuration: configuration)
+        picker.delegate = self
+        present(picker, animated: true)
         
+    }
+    
+    @objc private func didTapView() {
+        view.endEditing(true)
     }
     
     override func viewWillLayoutSubviews() {
@@ -110,9 +160,60 @@ extension ProfileDataFormViewController {
             userNametextField.trailingAnchor.constraint(equalTo: displayNametextField.trailingAnchor),
             userNametextField.topAnchor.constraint(equalTo: displayNametextField.bottomAnchor,constant: 20),
             userNametextField.heightAnchor.constraint(equalToConstant: 50),
-
-
+            
+            bioTextView.leadingAnchor.constraint(equalTo: displayNametextField.leadingAnchor),
+            bioTextView.trailingAnchor.constraint(equalTo: displayNametextField.trailingAnchor),
+            bioTextView.topAnchor.constraint(equalTo: userNametextField.bottomAnchor,constant: 20),
+            bioTextView.heightAnchor.constraint(equalToConstant: 150),
+            
+            submitButton.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 20),
+            submitButton.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -20),
+            submitButton.heightAnchor.constraint(equalToConstant: 50),
+            submitButton.bottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor,constant: -20)
         ]
         )
+    }
+}
+extension ProfileDataFormViewController: UITextViewDelegate, UITextFieldDelegate {
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        scrollView.setContentOffset(CGPoint(x: 0, y: textView.frame.origin.y - 100), animated: true)
+        if textView.textColor == .gray {
+            textView.textColor = .label
+            textView.text = ""
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+        if textView.text.isEmpty {
+            textView.text = "Tell the world about your selft"
+            textView.textColor = .gray
+        }
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        scrollView.setContentOffset(CGPoint(x: 0, y: textField.frame.origin.y - 100), animated: true)
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+    }
+}
+
+extension ProfileDataFormViewController: PHPickerViewControllerDelegate {
+    
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        picker.dismiss(animated: true)
+        
+        for result in results {
+            result.itemProvider.loadObject(ofClass: UIImage.self) { [weak self] object, error in
+                if let image = object as? UIImage {
+                    DispatchQueue.main.async {
+                        self?.avatarPlaceHolderImageView.image = image
+                    }
+                }
+            }
+        }
     }
 }
