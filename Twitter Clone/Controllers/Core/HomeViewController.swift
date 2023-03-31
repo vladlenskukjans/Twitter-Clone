@@ -14,6 +14,27 @@ class HomeViewController: UIViewController {
     private var viewModel = HomViewViewModel()
     private var subscriptions: Set<AnyCancellable> = []
     
+    private lazy var tweetButton: UIButton = {
+        let button = UIButton(type: .system, primaryAction: UIAction { [weak self] _ in
+            print("tweet has been prepered")
+//            let vc = TweetViewController()
+//            self.navigationController?.pushViewController(vc, animated: true)
+            let vc = UINavigationController(rootViewController: TweetViewController())
+            vc.modalPresentationStyle = .fullScreen
+            self?.present(vc, animated: true)
+        })
+        
+        button.backgroundColor = .twitterBlueColor
+        button.tintColor = .white
+        button.translatesAutoresizingMaskIntoConstraints = false
+        let plusSign = UIImage(systemName: "plus", withConfiguration: UIImage.SymbolConfiguration(pointSize: 12, weight: .bold))
+        button.setImage(plusSign, for: .normal)
+        button.layer.cornerRadius = 30
+        button.clipsToBounds = true
+        return button
+    }()
+    
+    
     private func configureNavigationBar() {
         let size: CGFloat = 50
         let logoImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: size, height: size))
@@ -46,11 +67,13 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
      
         view.addSubview(timelineTableView)
+        view.addSubview(tweetButton)
         timelineTableView.delegate = self
         timelineTableView.dataSource = self
         configureNavigationBar()
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "rectangle.portrait.and.arrow.right"), style: .plain, target: self, action: #selector(didTapSingOut))
         bindViews()
+        setConstraints()
     }
     
     func completeUserOnboarding() {
@@ -87,6 +110,16 @@ class HomeViewController: UIViewController {
             present(vc, animated: true)
         }
         
+    }
+    
+    private func setConstraints() {
+        NSLayoutConstraint.activate([
+            tweetButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant:  -25),
+            tweetButton.bottomAnchor.constraint(equalTo: view.bottomAnchor,constant: -120),
+            tweetButton.widthAnchor.constraint(equalToConstant: 60),
+            tweetButton.heightAnchor.constraint(equalToConstant: 60),
+        
+        ])
     }
     
     

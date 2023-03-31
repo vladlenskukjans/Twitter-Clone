@@ -42,6 +42,10 @@
 		248B314829D5E51300EBAD36 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248B314729D5E51300EBAD36 /* StorageManager.swift */; };
 		24911C4529D7142A0076A3B0 /* ProfileViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24911C4429D7142A0076A3B0 /* ProfileViewViewModel.swift */; };
 		24911C4829D722BF0076A3B0 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 24911C4729D722BF0076A3B0 /* SDWebImage */; };
+		24911C4B29D72BF50076A3B0 /* Extension+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24911C4A29D72BF50076A3B0 /* Extension+UIColor.swift */; };
+		24911C4D29D73DF00076A3B0 /* TweetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24911C4C29D73DF00076A3B0 /* TweetViewController.swift */; };
+		24911C4F29D749D90076A3B0 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24911C4E29D749D90076A3B0 /* Tweet.swift */; };
+		24911C5129D74ACA0076A3B0 /* TweetViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24911C5029D74ACA0076A3B0 /* TweetViewViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +76,10 @@
 		248B314529D180D800EBAD36 /* ProfileDataFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataFormViewModel.swift; sourceTree = "<group>"; };
 		248B314729D5E51300EBAD36 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		24911C4429D7142A0076A3B0 /* ProfileViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewViewModel.swift; sourceTree = "<group>"; };
+		24911C4A29D72BF50076A3B0 /* Extension+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIColor.swift"; sourceTree = "<group>"; };
+		24911C4C29D73DF00076A3B0 /* TweetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetViewController.swift; sourceTree = "<group>"; };
+		24911C4E29D749D90076A3B0 /* Tweet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
+		24911C5029D74ACA0076A3B0 /* TweetViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetViewViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +106,7 @@
 		248B30E429CB62B400EBAD36 = {
 			isa = PBXGroup;
 			children = (
+				24911C4929D72BBD0076A3B0 /* Utils */,
 				248B313C29D0758400EBAD36 /* Models */,
 				248B30EF29CB62B400EBAD36 /* Twitter Clone */,
 				248B313629CF1E1D00EBAD36 /* Networking */,
@@ -166,6 +175,7 @@
 			children = (
 				248B311229CB983B00EBAD36 /* ProfileViewController.swift */,
 				248B314329D0C8C300EBAD36 /* ProfileDataFormViewController.swift */,
+				24911C4C29D73DF00076A3B0 /* TweetViewController.swift */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -195,6 +205,7 @@
 				248B314129D0B67B00EBAD36 /* HomeViewViewModel.swift */,
 				248B314529D180D800EBAD36 /* ProfileDataFormViewModel.swift */,
 				24911C4429D7142A0076A3B0 /* ProfileViewViewModel.swift */,
+				24911C5029D74ACA0076A3B0 /* TweetViewViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -219,9 +230,18 @@
 			isa = PBXGroup;
 			children = (
 				248B313D29D075FC00EBAD36 /* TwitterUser.swift */,
+				24911C4E29D749D90076A3B0 /* Tweet.swift */,
 				248B313F29D0781A00EBAD36 /* DatabaseManager.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		24911C4929D72BBD0076A3B0 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				24911C4A29D72BF50076A3B0 /* Extension+UIColor.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -322,14 +342,18 @@
 				248B313229CCC1C700EBAD36 /* RegisterViewController.swift in Sources */,
 				248B30F129CB62B400EBAD36 /* AppDelegate.swift in Sources */,
 				248B314629D180D800EBAD36 /* ProfileDataFormViewModel.swift in Sources */,
+				24911C4F29D749D90076A3B0 /* Tweet.swift in Sources */,
 				248B30F329CB62B400EBAD36 /* SceneDelegate.swift in Sources */,
+				24911C5129D74ACA0076A3B0 /* TweetViewViewModel.swift in Sources */,
 				248B310729CB64BF00EBAD36 /* HomeViewController.swift in Sources */,
 				248B311329CB983B00EBAD36 /* ProfileViewController.swift in Sources */,
+				24911C4B29D72BF50076A3B0 /* Extension+UIColor.swift in Sources */,
 				248B310D29CB650000EBAD36 /* DirectMessagesViewController.swift in Sources */,
 				248B311529CC3A4700EBAD36 /* ProfileTableViewHeader.swift in Sources */,
 				248B313529CCD66900EBAD36 /* AuthenticationViewModel.swift in Sources */,
 				248B314429D0C8C300EBAD36 /* ProfileDataFormViewController.swift in Sources */,
 				248B312D29CCAFB300EBAD36 /* OnboardingViewController.swift in Sources */,
+				24911C4D29D73DF00076A3B0 /* TweetViewController.swift in Sources */,
 				248B313E29D075FC00EBAD36 /* TwitterUser.swift in Sources */,
 				248B314229D0B67B00EBAD36 /* HomeViewViewModel.swift in Sources */,
 				248B311029CB731C00EBAD36 /* TweetTableViewCell.swift in Sources */,

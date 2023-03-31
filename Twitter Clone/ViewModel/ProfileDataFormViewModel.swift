@@ -44,7 +44,6 @@ class ProfileDataFormViewModel: ObservableObject {
         let metaData = StorageMetadata()
         metaData.contentType = "image/jpeg"
         
-        
         StorageManager.shared.uploudProfilePhoto(with: randomID, image: imageData, metaData: metaData)
             .flatMap({ metaData in
                 StorageManager.shared.getDownloadedURL(with: metaData.path)
@@ -69,7 +68,6 @@ class ProfileDataFormViewModel: ObservableObject {
               let bio,
               let avatarPath,
               let id = Auth.auth().currentUser?.uid else {return}
-             
         
         let updateFields: [String: Any] = [
             "displayName": displayName,
