@@ -21,8 +21,8 @@ class ProfileDataFormViewModel: ObservableObject {
     @Published var avatarPath: String?
     @Published var imageData: UIImage?
     @Published var isFormValid: Bool = false
-    @Published var url: URL?
     @Published var error: String = ""
+    @Published var isOnboardingFinished: Bool = false
     
     func validateUserProfileForm() {
         guard let displayName = displayName,
@@ -39,7 +39,6 @@ class ProfileDataFormViewModel: ObservableObject {
     }
     
     func uploadAvatar() {
-        
         let randomID = UUID().uuidString
         guard let imageData = imageData?.jpegData(compressionQuality: 0.5) else {return}
         let metaData = StorageMetadata()
@@ -51,13 +50,45 @@ class ProfileDataFormViewModel: ObservableObject {
                 StorageManager.shared.getDownloadedURL(with: metaData.path)
             })
             .sink { [weak self] complition in
-                if case .failure(let error) = complition {
-                    self?.error = error.localizedDescription
+                switch complition {
+                    
+                case .finished:
+                    self?.updateUserData()
+                case .failure(let error):
+                    print(error.localizedDescription)
                 }
             } receiveValue: { [weak self] url in
-                self?.url = url
+                self?.avatarPath = url.absoluteString
             }
             .store(in: &subscriptions)
+    }
+    
+    private func updateUserData() {
+        guard let displayName,
+              let userName,
+              let bio,
+              let avatarPath,
+              let id = Auth.auth().currentUser?.uid else {return}
+             
+        
+        let updateFields: [String: Any] = [
+            "displayName": displayName,
+            "userName":userName,
+            "bio": bio,
+            "avatarPath": avatarPath,
+            "isUserOnboarded": true
+        ]
+        DatabaseManager.shared.collectionUsers(updateFields: updateFields, for: id)
+            .sink { [weak self] complition in
+                if case .failure(let error) = complition {
+                    print(error.localizedDescription)
+                    self?.error = error.localizedDescription
+                }
+            } receiveValue: { [weak self] onboardingState in
+                self?.isOnboardingFinished = onboardingState
+            }
+            .store(in: &subscriptions)
+
     }
 }
 

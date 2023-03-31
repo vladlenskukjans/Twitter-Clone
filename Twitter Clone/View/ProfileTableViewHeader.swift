@@ -75,7 +75,7 @@ class ProfileTableViewHeader: UIView {
         return stackView
     }()
     
-    private let followersTextLabel: UILabel = {
+ var followersTextLabel: UILabel = {
         let label = UILabel()
         label.textColor = .secondaryLabel
         label.font = .systemFont(ofSize: 14, weight: .regular)
@@ -84,7 +84,7 @@ class ProfileTableViewHeader: UIView {
         return label
     }()
     
-    private let followersCountLabel: UILabel = {
+ var followersCountLabel: UILabel = {
        let label = UILabel()
         label.textColor = .label
         label.text = "1M"
@@ -93,7 +93,7 @@ class ProfileTableViewHeader: UIView {
         return label
     }()
         
-    private let followingTextLabel: UILabel = {
+  var followingTextLabel: UILabel = {
         let label = UILabel()
         label.textColor = .secondaryLabel
         label.font = .systemFont(ofSize: 14, weight: .regular)
@@ -102,7 +102,7 @@ class ProfileTableViewHeader: UIView {
         return label
     }()
         
-    private let followingCountLabel: UILabel = {
+   var followingCountLabel: UILabel = {
        let label = UILabel()
         label.textColor = .label
         label.text = "345"
@@ -111,7 +111,7 @@ class ProfileTableViewHeader: UIView {
         return label
     }()
         
-    private let joinedDateLabel: UILabel = {
+  var joinedDateLabel: UILabel = {
         let label = UILabel()
         label.textColor = .secondaryLabel
         label.text = "Joined March 2023"
@@ -120,7 +120,7 @@ class ProfileTableViewHeader: UIView {
         return label
     }()
     
-    private let joinDateImageView: UIImageView = {
+ var joinDateImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(systemName: "calendar",withConfiguration: UIImage.SymbolConfiguration(pointSize: 14))
         imageView.tintColor = .secondaryLabel
@@ -128,7 +128,7 @@ class ProfileTableViewHeader: UIView {
         return imageView
     }()
         
-    private let userBioLabel: UILabel = {
+   var userBioLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 3
         label.textColor = .label
@@ -137,7 +137,7 @@ class ProfileTableViewHeader: UIView {
         return label
     }()
         
-    private let userNameLabel: UILabel = {
+   var userNameLabel: UILabel = {
         let lable = UILabel()
         lable.text = "@vladlenskukjans"
         lable.textColor = .secondaryLabel
@@ -146,22 +146,23 @@ class ProfileTableViewHeader: UIView {
         return lable
     }()
         
-    private let displayNameLabel: UILabel = {
+    var displayNameLabel: UILabel = {
         let lable = UILabel()
-        lable.text = "Vladlens Kukjans"
+      //  lable.text = "Vladlens Kukjans"
         lable.font = .systemFont(ofSize: 22, weight: .bold)
         lable.textColor = .label
         lable.translatesAutoresizingMaskIntoConstraints = false
         return lable
     }()
         
-    private let profileAvatarImageView: UIImageView = {
+   var profileAvatarImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 40
         imageView.layer.masksToBounds = true
         imageView.clipsToBounds = true
-        imageView.image = UIImage(systemName: "person")
-        imageView.backgroundColor = .green
+       imageView.contentMode = .scaleAspectFill
+       // imageView.image = UIImage(systemName: "person")
+       // imageView.backgroundColor = .green
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
