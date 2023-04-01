@@ -139,6 +139,13 @@ class TweetTableViewCell: UITableViewCell {
         shareButton.addTarget(self, action: #selector(didTapShare), for: .touchUpInside)
     }
     
+    func configureTweet(whit displayName: String, userName: String, tweetTextContent: String, avatarPath: String) {
+        displayNamelabel.text = displayName
+        userNameLabel.text = "@\(userName)"
+        tweetTextContentLabel.text = tweetTextContent
+        avatarImageView.sd_setImage(with: URL(string: avatarPath))
+    }
+    
     
 }
 extension TweetTableViewCell {

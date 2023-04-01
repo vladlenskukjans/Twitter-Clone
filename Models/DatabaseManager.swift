@@ -22,7 +22,7 @@ class DatabaseManager {
     
     func collectionUsers(add user: User) -> AnyPublisher<Bool, Error> {
         let twitterUser = TwitterUser(from: user)
-       return db.collection(usersPath).document(twitterUser.id).setData(from: twitterUser)
+        return db.collection(usersPath).document(twitterUser.id).setData(from: twitterUser)
             .map { _ in
                 return true
             }
@@ -33,7 +33,7 @@ class DatabaseManager {
     func collectionUser(retreive id: String) -> AnyPublisher<TwitterUser, Error> {
         db.collection(usersPath).document(id).getDocument()
             .tryMap { try $0.data(as: TwitterUser.self) }
-              
+        
             .eraseToAnyPublisher()
     }
     
@@ -49,4 +49,14 @@ class DatabaseManager {
             .eraseToAnyPublisher()
     }
     
+    func collectionTweets(retreiveTweet forUserId: String) -> AnyPublisher<[Tweet], Error> {
+        db.collection(tweetsPath).whereField("authorId", isEqualTo: forUserId)
+            .getDocuments()
+            .tryMap(\.documents)
+            .tryMap { snapshots in
+                try snapshots.map({
+                  try  $0.data(as: Tweet.self) })
+        }
+            .eraseToAnyPublisher()
+    }
 }
